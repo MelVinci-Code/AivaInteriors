@@ -11,15 +11,20 @@ jobs:
       - name: Executing Shell Scripts
         run: cowsay -f dragon "Run for cover, I am a dragon! .... RAWR" >> dragon.txt
 
-      - name: Sleep for 30 secs
-        run: sleep 30
-        
+      - name: Upload artifacts
+        uses: actions/upload-pages-artifact@v3
+        with:
+          name: dragon-artifact
+          path: dragon.txt
+
   test_job_2:
     needs: build_job_1
     runs-on: ubuntu-latest
     steps:
-      - name: Sleep for 10 secs
-        run: sleep 10
+      - name: Download artifacts
+        uses: actions/download-pages-artifact@v8
+        with:
+          name: dragon-artifact
 
       - name: Check if the word "dragon" exists in the file
         run: grep -i "dragon" dragon.txt
@@ -28,6 +33,11 @@ jobs:
     needs: test_job_2
     runs-on: ubuntu-latest
     steps:
+      - name: Download artifacts
+        uses: actions/download-pages-artifact@v8
+        with:
+          name: dragon-artifact
+
       - name: Read file
         run: cat dragon.txt
 
