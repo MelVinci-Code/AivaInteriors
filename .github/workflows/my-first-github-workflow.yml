@@ -15,4 +15,7 @@ jobs:
           cat README.md
 
       - name: Generate ASCII art
-        run: cowsay -f dragon "Run for cover, I am a dragon! .... RAWR" >> dragon.txt 
+        run: |
+          echo "🎨 Generating ASCII art using cowsay..."
+          sudo apt-get update && sudo apt-get install -y cowsay
+          cowsay -f dragon "Run for cover, I am a dragon! .... RAWR" >> dragon.txt 
