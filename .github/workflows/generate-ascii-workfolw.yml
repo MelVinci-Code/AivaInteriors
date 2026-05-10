@@ -1,4 +1,4 @@
-name: Generate ASCII Art
+name: Building, Testing, and Deploying ASCII Art with Cowsay
 
 on: [push]
 jobs:
@@ -9,9 +9,7 @@ jobs:
         run: sudo apt-get install -y cowsay
 
       - name: Executing Shell Scripts
-        run: |
-          chmod +x ascii-script.sh
-          ./ascii-script.sh
+        run: cowsay -f dragon "Run for cover, I am a dragon! .... RAWR" >> dragon.txt
 
       - name: Sleep for 30 secs
         run: sleep 30
