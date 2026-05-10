@@ -11,6 +11,7 @@ function Button({ val,type, additionalClass, children }) {
       ? "text-sm font-semibold lg:text-base py-2 px-4 border-1  border-black shadow-[5px_5px_0px_0px] hover:bg-black hover:text-white duration-300 hover:shadow-[5px_5px_0px_0px_#6c6c6c]"
       : ""
   } ${additionalClass}`;
+  
   return <motion.button variants={SlideUp(val)}
               initial="initial"
               animate="animate" className={style}>{children}</motion.button>;

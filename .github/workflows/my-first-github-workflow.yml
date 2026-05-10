@@ -1,0 +1,21 @@
+name: GitHub Actions Demo
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v6
+
+      - name: List files in the repository
+        run: |
+          echo "📂 Here are the files in the repository:"
+          ls -ltra
+          cat README.md
+
+      - name: Generate ASCII art
+        run: |
+          echo "🎨 Generating ASCII art using cowsay..."
+          sudo apt-get update && sudo apt-get install -y cowsay
+          cowsay -f dragon "Run for cover, I am a dragon! .... RAWR" >> dragon.txt 

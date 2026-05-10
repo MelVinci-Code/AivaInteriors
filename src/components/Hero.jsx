@@ -43,7 +43,7 @@ function Hero() {
           <motion.img
             initial={{ x: 100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
             src="/hero.png"
             alt="hero image"
             className="w-[80%] md:w-[300px] object-cover md:scale-125"

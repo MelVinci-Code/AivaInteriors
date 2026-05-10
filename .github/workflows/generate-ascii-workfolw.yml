@@ -1,0 +1,45 @@
+name: Building, Testing, and Deploying ASCII Art with Cowsay
+
+on: [push]
+jobs:
+  build_job_1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Cowsay
+        run: sudo apt-get install -y cowsay
+
+      - name: Executing Shell Scripts
+        run: cowsay -f dragon "Run for cover, I am a dragon! .... RAWR" >> dragon.txt
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: dragon-artifact
+          path: dragon.txt
+
+  test_job_2:
+    needs: build_job_1
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v8
+        with:
+          name: dragon-artifact
+
+      - name: Check if the word "dragon" exists in the file
+        run: grep -i "dragon" dragon.txt
+
+  deploy_job_3:
+    needs: test_job_2
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v8
+        with:
+          name: dragon-artifact
+
+      - name: Read file
+        run: cat dragon.txt
+
+      - name: Deploy
+        run: echo Deploying ......
